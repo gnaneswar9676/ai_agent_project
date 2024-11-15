@@ -44,4 +44,28 @@ This AI-powered tool simplifies data extraction from the web by automating searc
 1. **Clone the repository**:  
    ```bash  
    git clone https://github.com/<your-username>/ai-agent-project.git  
-   cd ai-agent-project  
+   cd ai-agent-project
+
+### Install dependencies:
+
+bash
+Copy code
+pip install -r requirements.txt  
+
+
+### Set up environment variables:
+
+Create a .env file in the project root directory.
+Add the following variables:
+env
+Copy code
+OPENAI_API_KEY=<your-api-key>  
+DATABASE_URL=<your-database-url>  
+FLASK_ENV=development  
+
+### Run the Flask app:
+python app.py
+
+
+### Access the app:
+Open http://127.0.0.1:5000 in your browser.
