@@ -1,10 +1,12 @@
 # ai_agent_project
 
 AI Agent for Data-Driven Web Search
-Overview
+Overview:
+
 This project is an AI-powered tool designed to automate web searches for specific information using datasets (CSV or Google Sheets). The AI agent uses an LLM to parse search results and outputs structured data. A user-friendly dashboard allows file uploads, query definitions, and easy viewing or downloading of results.
 
-Features
+
+Features:
 Upload CSV or Google Sheets files.
 Define custom search queries for dataset columns.
 Leverage AI to parse web results intelligently.
