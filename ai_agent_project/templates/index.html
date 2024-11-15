@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Dashboard</title>
+    <style>
+        /* Reset and Global Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        /* Form Styling */
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+
+        input[type="file"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            font-size: 1em;
+            color: #333;
+        }
+
+        input[type="file"]:hover,
+        input[type="text"]:hover,
+        select:hover {
+            border: 1px solid #ff7e5f;
+        }
+
+        button {
+            background-color: #ff7e5f;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #feb47b;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Agent Dashboard</h1>
+
+    <!-- File upload form -->
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Upload CSV File:</label>
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <!-- Query form: appears if columns are available -->
+    {% if columns %}
+    <h2>Submit Query</h2>
+    <form action="/query" method="post">
+        <label for="column_name">Select Column:</label>
+        <select name="column_name">
+            {% for column in columns %}
+            <option value="{{ column }}">{{ column }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="prompt_template">Enter Query Prompt:</label>
+        <input type="text" name="prompt_template" placeholder="Get me the email address of {company}" required>
+
+        <input type="hidden" name="file_path" value="{{ file_path }}">
+        <button type="submit">Submit Query</button>
+    </form>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Query - AI Agent Dashboard</title>
+    <style>
+        /* Reset and Global Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Soft gradient background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            overflow: hidden;
+            font-size: 1.1em;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styled Message Bubble */
+        .message-bubble {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 20px;
+            margin: 15px 0;
+            max-width: 80%;
+            position: relative;
+            word-wrap: break-word;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        /* Button Styling */
+        button {
+            padding: 15px 25px;
+            border: none;
+            background-color: #ff7e5f;
+            color: #fff;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        button:hover {
+            background-color: #feb47b;
+        }
+
+        /* Input Fields and File Upload */
+        input[type="file"], input[type="text"], select {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        input[type="file"]:hover, input[type="text"]:hover, select:hover {
+            border: 1px solid #ff7e5f;
+        }
+
+        /* Form Layout */
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Placeholder Animation */
+        input::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Animation for fading in the container */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Query Form Section */
+        .query-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Submit Your Query</h1>
+
+        <!-- Display Message -->
+        <div class="message-bubble">
+            <p>Select a column and enter your query.</p>
+        </div>
+
+        <!-- Query Form -->
+        <form action="/query" method="post" class="query-form">
+            <label for="column_name">Select Column:</label>
+            <select name="column_name" required>
+                {% for column in columns %}
+                    <option value="{{ column }}">{{ column }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="prompt_template">Enter Query Prompt:</label>
+            <input type="text" name="prompt_template" placeholder="Enter search query in the format '{value}'" required>
+
+            <input type="hidden" name="file_path" value="{{ file_path }}">
+            <button type="submit">Submit Query</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
