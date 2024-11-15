@@ -1,4 +1,4 @@
-AI Agent for Data-Driven Web Search
+#AI Agent for Data-Driven Web Search
 📖 Overview
 This AI-powered tool simplifies data extraction from the web by automating searches for specific information using datasets (CSV or Google Sheets). With a dashboard interface, users can upload datasets, define search queries for specific columns, and retrieve structured results processed by a Large Language Model (LLM).
 
